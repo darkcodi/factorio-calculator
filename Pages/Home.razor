@@ -7,51 +7,62 @@
 
 @* Form to add new factory *@
 @* This form should contain a plus button to add new inputs and outputs *@
-<form class="form-inline" style="background-color: lightgray;" @onsubmit="AddFactory">
+<form class="form-inline" style="background-color: lightgray; padding: 20px;" @onsubmit="AddFactory">
     <h2>Add new factory</h2>
     <div class="form-group">
         <label for="factoryName">Name</label>
         <input type="text" class="form-control" id="factoryName" placeholder="Name" @bind="NewFactoryName"/>
     </div>
-    @* Inputs list *@
-    <div class="form-group">
-        <label for="factoryInputs">Inputs</label>
-        <div id="factoryInputs">
-            @for (var i = 0; i < NewFactoryInputs.Count; i++)
-            {
-                var input = NewFactoryInputs[i];
-                <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount" @bind="input.Amount"/>
-                    <input type="text" class="form-control" placeholder="Resource" @bind="input.Resource"/>
-                    <div class="input-group-append">
-                        @{ var index = i; }
-                        <button class="btn btn-outline-secondary" type="button" @onclick="() => NewFactoryInputs.RemoveAt(index)">Remove</button>
-                    </div>
+
+    @* Split the page into 2 panels, one for the inputs (on the left) and one for the outputs (on the right). *@
+    <br/>
+    <div class="row">
+        <div class="col-md-6">
+            @* Inputs list *@
+            <div class="form-group">
+                <label for="factoryInputs">Inputs</label>
+                <div id="factoryInputs">
+                    @for (var i = 0; i < NewFactoryInputs.Count; i++)
+                    {
+                        var input = NewFactoryInputs[i];
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="Amount" @bind="input.Amount"/>
+                            <input type="text" class="form-control" placeholder="Resource" @bind="input.Resource"/>
+                            <div class="input-group-append">
+                                @{ var index = i; }
+                                <button class="btn btn-outline-secondary" type="button" @onclick="() => NewFactoryInputs.RemoveAt(index)">Remove</button>
+                            </div>
+                        </div>
+                    }
                 </div>
-            }
+                <button type="button" class="btn btn-outline-secondary" @onclick="() => NewFactoryInputs.Add(new ResourceAmount(string.Empty, 0))">Add input</button>
+            </div>
         </div>
-        <button type="button" class="btn btn-outline-secondary" @onclick="() => NewFactoryInputs.Add(new ResourceAmount(string.Empty, 0))">Add input</button>
-    </div>
-    @* Outputs list *@
-    <div class="form-group">
-        <label for="factoryOutputs">Outputs</label>
-        <div id="factoryOutputs">
-            @for (var i = 0; i < NewFactoryOutputs.Count; i++)
-            {
-                var output = NewFactoryOutputs[i];
-                <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount" @bind="output.Amount"/>
-                    <input type="text" class="form-control" placeholder="Resource" @bind="output.Resource"/>
-                    <div class="input-group-append">
-                        @{ var index = i; }
-                        <button class="btn btn-outline-secondary" type="button" @onclick="() => NewFactoryOutputs.RemoveAt(index)">Remove</button>
-                    </div>
+        <div class="col-md-6">
+            @* Outputs list *@
+            <div class="form-group">
+                <label for="factoryOutputs">Outputs</label>
+                <div id="factoryOutputs">
+                    @for (var i = 0; i < NewFactoryOutputs.Count; i++)
+                    {
+                        var output = NewFactoryOutputs[i];
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="Amount" @bind="output.Amount"/>
+                            <input type="text" class="form-control" placeholder="Resource" @bind="output.Resource"/>
+                            <div class="input-group-append">
+                                @{ var index = i; }
+                                <button class="btn btn-outline-secondary" type="button" @onclick="() => NewFactoryOutputs.RemoveAt(index)">Remove</button>
+                            </div>
+                        </div>
+                    }
                 </div>
-            }
+                <button type="button" class="btn btn-outline-secondary" @onclick="() => NewFactoryOutputs.Add(new ResourceAmount(string.Empty, 0))">Add output</button>
+            </div>
         </div>
-        <button type="button" class="btn btn-outline-secondary" @onclick="() => NewFactoryOutputs.Add(new ResourceAmount(string.Empty, 0))">Add output</button>
     </div>
-    <button type="submit" class="btn btn-primary">Add</button>
+
+    <br/>
+    <button type="submit" class="btn btn-primary">Add factory</button>
 </form>
 
 
