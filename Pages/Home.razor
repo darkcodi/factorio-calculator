@@ -128,7 +128,13 @@
                 @foreach (var (resource, amount) in BasePlan.Resources)
                 {
                     <tr>
-                        <td>@resource</td>
+                        <td>
+                            @{
+                                var bgColor = ColorGenerator.GetBackgroundColorForText(resource);
+                                var fgColor = ColorGenerator.GetForegroundColorForColor(bgColor);
+                                <span class="badge" style="background-color: @bgColor; color: @fgColor;">@resource</span>
+                            }
+                        </td>
                         <td>@amount</td>
                     </tr>
                 }
