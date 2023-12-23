@@ -2,6 +2,16 @@
 
 public class ResourceAmount
 {
-    public Resource Resource { get; set; }
+    public string Resource { get; set; }
     public double Amount { get; set; }
+
+    public ResourceAmount()
+    {
+    }
+
+    public ResourceAmount(string resource, double amount)
+    {
+        Resource = resource;
+        Amount = amount;
+    }
 }

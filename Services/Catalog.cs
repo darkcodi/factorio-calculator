@@ -4,19 +4,18 @@ namespace FactorioCalculator.Services;
 
 public class Catalog
 {
-    public List<Resource> Resources { get; set; } = new();
     public List<Factory> Factories { get; set; } = new();
-    
-    public void AddResource(string name)
+
+    public void AddFactory(string name, List<ResourceAmount> inputs, List<ResourceAmount> outputs)
     {
-        if (Resources.All(r => r.Name != name))
+        if (Factories.All(f => f.Name != name))
         {
-            Resources.Add(new Resource { Name = name });
+            Factories.Add(new Factory { Name = name, Inputs = inputs, Outputs = outputs });
         }
     }
 
-    public void RemoveResource(string name)
+    public void RemoveFactory(string name)
     {
-        Resources.RemoveAll(r => r.Name == name);
+        Factories.RemoveAll(f => f.Name == name);
     }
 }
