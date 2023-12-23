@@ -1,5 +1,43 @@
 ﻿@page "/resources"
+@using FactorioCalculator.Services
+@inject Catalog Catalog
 
 <PageTitle>Resources</PageTitle>
 
 <h1>Resources</h1>
+
+@* Form to add new resource (inline) *@
+<form class="form-inline" @onsubmit="AddNewResource">
+    <div class="form-group">
+        <label for="newResourceName">New Resource Name</label>
+        <input type="text" class="form-control" id="newResourceName" placeholder="New Resource Name" @bind="NewResourceName">
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var resource in Catalog.Resources)
+    {
+        <tr>
+            <td>@resource.Name</td>
+            <td><button class="btn btn-danger" @onclick="() => Catalog.RemoveResource(resource.Name)">Remove</button></td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+    public string NewResourceName { get; set; }
+
+    public void AddNewResource()
+    {
+        Catalog.AddResource(NewResourceName);
+    }
+}
