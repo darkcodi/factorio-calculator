@@ -2,7 +2,12 @@
 
 public class Factory
 {
-    public string Name { get; set; }
-    public List<ResourceAmount> Inputs { get; set; }
-    public List<ResourceAmount> Outputs { get; set; }
+    public Factory(string name)
+    {
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+    }
+
+    public string Name { get; }
+    public IReadOnlyCollection<ResourceAmount> Inputs { get; init; } = new List<ResourceAmount>();
+    public IReadOnlyCollection<ResourceAmount> Outputs { get; init; } = new List<ResourceAmount>();
 }
