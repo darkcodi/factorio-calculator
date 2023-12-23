@@ -17,18 +17,39 @@
     <div class="form-group">
         <label for="factoryInputs">Inputs</label>
         <div id="factoryInputs">
-            @foreach (var input in NewFactoryInputs)
+            @for (var i = 0; i < NewFactoryInputs.Count; i++)
             {
+                var input = NewFactoryInputs[i];
                 <div class="input-group">
                     <input type="number" class="form-control" placeholder="Amount" @bind="input.Amount"/>
                     <input type="text" class="form-control" placeholder="Resource" @bind="input.Resource"/>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Remove</button>
+                        @{ var index = i; }
+                        <button class="btn btn-outline-secondary" type="button" @onclick="() => NewFactoryInputs.RemoveAt(index)">Remove</button>
                     </div>
                 </div>
             }
         </div>
         <button type="button" class="btn btn-outline-secondary" @onclick="() => NewFactoryInputs.Add(new ResourceAmount(string.Empty, 0))">Add input</button>
+    </div>
+    @* Outputs list *@
+    <div class="form-group">
+        <label for="factoryOutputs">Outputs</label>
+        <div id="factoryOutputs">
+            @for (var i = 0; i < NewFactoryOutputs.Count; i++)
+            {
+                var output = NewFactoryOutputs[i];
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="Amount" @bind="output.Amount"/>
+                    <input type="text" class="form-control" placeholder="Resource" @bind="output.Resource"/>
+                    <div class="input-group-append">
+                        @{ var index = i; }
+                        <button class="btn btn-outline-secondary" type="button" @onclick="() => NewFactoryOutputs.RemoveAt(index)">Remove</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <button type="button" class="btn btn-outline-secondary" @onclick="() => NewFactoryOutputs.Add(new ResourceAmount(string.Empty, 0))">Add output</button>
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
