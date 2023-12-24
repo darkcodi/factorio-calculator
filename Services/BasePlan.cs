@@ -4,6 +4,11 @@ namespace FactorioCalculator.Services;
 
 public class BasePlan
 {
+    // singleton
+    private static BasePlan _instance;
+    public static BasePlan Instance => _instance ??= new BasePlan();
+    private BasePlan() { }
+
     private readonly List<Factory> _factories = new();
     private readonly List<int> _factoryCounts = new();
     private readonly List<string> _resources = new();
@@ -81,6 +86,14 @@ public class BasePlan
 
     public void IncreaseFactoryCount(string factoryName) => AddFactories(factoryName, 1);
     public void DecreaseFactoryCount(string factoryName) => AddFactories(factoryName, -1);
+
+    public void Reset()
+    {
+        _factories.Clear();
+        _factoryCounts.Clear();
+        _resources.Clear();
+        _resourceAmounts.Clear();
+    }
 
     private void AddFactories(string factoryName, int count)
     {

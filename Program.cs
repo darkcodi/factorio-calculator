@@ -7,8 +7,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-var plan = new BasePlan();
-new SatisfactoryFactoriesSet().ApplyTo(plan);
-builder.Services.AddSingleton(plan);
+new SatisfactoryFactoriesSet().ApplyTo(BasePlan.Instance);
+builder.Services.AddSingleton(BasePlan.Instance);
 
 await builder.Build().RunAsync();

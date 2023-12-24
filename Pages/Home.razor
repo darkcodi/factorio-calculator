@@ -1,7 +1,9 @@
 ﻿@page "/"
 @using FactorioCalculator.Services
 @using FactorioCalculator.Models
+@using FactorioCalculator.PreDefinedSets
 @inject BasePlan BasePlan
+@inject IJSRuntime JsRuntime;
 
 <PageTitle>FactorioCalculator</PageTitle>
 
@@ -189,6 +191,11 @@
     public List<ResourceAmount> NewFactoryInputs { get; set; } = new();
     public List<ResourceAmount> NewFactoryOutputs { get; set; } = new();
 
+    public Home()
+    {
+        PageManager.Instance.SetCurrentPage(this);
+    }
+
     public void AddFactory()
     {
         var inputs = NewFactoryInputs.Where(x => x.Amount != 0 && !string.IsNullOrWhiteSpace(x.Resource)).ToList();
@@ -203,5 +210,20 @@
         NewFactoryName = "";
         NewFactoryInputs = new();
         NewFactoryOutputs = new();
+    }
+
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+
+    // Return call back from JavaScript to C#
+    [JSInvokable]
+    public static void JStoCSCall()
+    {
+        Console.WriteLine("C# function called from JavaScript");
+        BasePlan.Instance.Reset();
+        new MyCustomSatisfactoryFactoriesSet().ApplyTo(BasePlan.Instance);
+        PageManager.Instance.RefreshCurrentPage();
     }
 }
