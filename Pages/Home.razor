@@ -133,10 +133,11 @@
                 <tr>
                     <th>Name</th>
                     <th>Amount</th>
+                    <th>TotalAmount</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var (resource, amount) in BasePlan.Resources)
+                @foreach (var (resource, amount, totalAmount) in BasePlan.Resources)
                 {
                     <tr>
                         <td>
@@ -157,6 +158,11 @@
                             @* leave only 2 decimals after the comma *@
                             @{ var amountString = amount.ToString("0.00"); }
                             @amountString
+                        </td>
+                        <td>
+                            @* leave only 2 decimals after the comma *@
+                            @{ var totalAmountString = totalAmount.ToString("0.00"); }
+                            @totalAmountString
                         </td>
                     </tr>
                 }

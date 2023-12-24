@@ -10,7 +10,7 @@ public class BasePlan
     private readonly List<double> _resourceAmounts = new();
 
     public IReadOnlyCollection<(Factory Factory, int Count)> Factories => _factories.Select((f, i) => (f, _factoryCounts[i])).ToList();
-    public IReadOnlyCollection<(string Resource, double Amount)> Resources => _resources.Select((r, i) => (r, _resourceAmounts[i])).OrderBy(x => x.r).ToList();
+    public IReadOnlyCollection<(string Resource, double Amount, double AllAmount)> Resources => GetAllResources();
     public bool HasAnyNegativeResource => _resourceAmounts.Any(x => x < 0);
     public bool HasAnyZeroResource => _resourceAmounts.Any(x => x == 0);
 
@@ -121,5 +121,31 @@ public class BasePlan
         {
             _resourceAmounts[resourceIndex] += amount;
         }
+    }
+
+    private IReadOnlyCollection<(string Resource, double Amount, double AllAmount)> GetAllResources()
+    {
+        var resources = _resources
+            .Select((r, i) => (Resource: r, Amount: _resourceAmounts[i], TotalAmount: _resourceAmounts[i]))
+            .OrderBy(x => x.Resource)
+            .ToList();
+        for (var factoryIndex = 0; factoryIndex < _factories.Count; factoryIndex++)
+        {
+            var factory = _factories[factoryIndex];
+            foreach (var input in factory.Inputs)
+            {
+                var resourceIndex = resources.FindIndex(x => x.Resource == input.Resource);
+                if (resourceIndex == -1)
+                {
+                    resources.Add((input.Resource, input.Amount * _factoryCounts[factoryIndex], input.Amount * _factoryCounts[factoryIndex]));
+                }
+                else
+                {
+                    var resource = resources[resourceIndex];
+                    resources[resourceIndex] = (resource.Resource, resource.Amount, resource.TotalAmount + input.Amount * _factoryCounts[factoryIndex]);
+                }
+            }
+        }
+        return resources;
     }
 }
