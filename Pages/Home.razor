@@ -99,7 +99,7 @@
                             {
                                 var bgColor = ColorGenerator.GetBackgroundColorForText(input.Resource);
                                 var fgColor = ColorGenerator.GetForegroundColorForColor(bgColor);
-                                <span class="badge" style="background-color: @bgColor; color: @fgColor; margin-right: 10px;">@input.Amount @input.Resource</span>
+                                <span class="badge" style="background-color: @bgColor; color: @fgColor; margin-left: 10px;">@input.Amount @input.Resource</span>
                             }
                         </td>
                         <td>
@@ -107,7 +107,7 @@
                             {
                                 var bgColor = ColorGenerator.GetBackgroundColorForText(output.Resource);
                                 var fgColor = ColorGenerator.GetForegroundColorForColor(bgColor);
-                                <span class="badge" style="background-color: @bgColor; color: @fgColor; margin-right: 10px;">@output.Amount @output.Resource</span>
+                                <span class="badge" style="background-color: @bgColor; color: @fgColor; margin-left: 10px;">@output.Amount @output.Resource</span>
                             }
                         </td>
                         <td>
@@ -144,9 +144,10 @@
                                 var bgColor = ColorGenerator.GetBackgroundColorForText(resource);
                                 var fgColor = ColorGenerator.GetForegroundColorForColor(bgColor);
                                 <span class="badge" style="background-color: @bgColor; color: @fgColor;">@resource</span>
+                                <button class="btn btn-outline-secondary" type="button" style="margin-left: 10px;" @onclick="() => BasePlan.IncreaseResource(resource)">+</button>
                                 if (amount < 0)
                                 {
-                                    <button class="btn btn-outline-secondary" type="button" @onclick="() => BasePlan.EnsurePositive(resource)">~</button>
+                                    <button class="btn btn-outline-secondary" type="button" style="margin-left: 10px;" @onclick="() => BasePlan.EnsurePositiveResource(resource)">~</button>
                                 }
                             }
                         </td>
