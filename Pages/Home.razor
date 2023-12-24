@@ -144,9 +144,17 @@
                                 var bgColor = ColorGenerator.GetBackgroundColorForText(resource);
                                 var fgColor = ColorGenerator.GetForegroundColorForColor(bgColor);
                                 <span class="badge" style="background-color: @bgColor; color: @fgColor;">@resource</span>
+                                if (amount < 0)
+                                {
+                                    <button class="btn btn-outline-secondary" type="button" @onclick="() => BasePlan.EnsurePositive(resource)">~</button>
+                                }
                             }
                         </td>
-                        <td>@amount</td>
+                        <td>
+                            @* leave only 2 decimals after the comma *@
+                            @{ var amountString = amount.ToString("0.00"); }
+                            @amountString
+                        </td>
                     </tr>
                 }
                 </tbody>

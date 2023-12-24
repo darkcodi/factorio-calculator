@@ -31,6 +31,20 @@ public class BasePlan
         _factoryCounts.RemoveAt(index);
     }
 
+    public void EnsurePositive(string resource)
+    {
+        var resourceIndex = _resources.FindIndex(x => x == resource);
+        if (resourceIndex == -1) return;
+        if (_resourceAmounts[resourceIndex] < 0)
+        {
+            var factoryIndex = _factories.FindIndex(f => f.Outputs.Any(o => o.Resource == resource));
+            if (factoryIndex == -1) return;
+            var factory = _factories[factoryIndex];
+            var neededFactoryCount = (int)Math.Ceiling(Math.Abs(_resourceAmounts[resourceIndex]) / factory.Outputs.First(o => o.Resource == resource).Amount);
+            AddFactories(factory.Name, neededFactoryCount);
+        }
+    }
+
     public void IncreaseFactoryCount(string factoryName) => AddFactories(factoryName, 1);
     public void DecreaseFactoryCount(string factoryName) => AddFactories(factoryName, -1);
 
