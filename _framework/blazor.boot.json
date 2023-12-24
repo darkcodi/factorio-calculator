@@ -1,12 +1,12 @@
 {
   "mainAssemblyName": "FactorioCalculator",
   "resources": {
-    "hash": "sha256-Dkwm4uSD0grolVYZ2aRNfr9Er4HAVKUkhy18TE8SM+8=",
+    "hash": "sha256-56ilvLEtvSOfH2lCSbd/eYROkSgE9Ht8qrBLmKFQCgQ=",
     "jsModuleNative": {
-      "dotnet.native.8.0.0.g3eqgauej8.js": "sha256-LjLDIz9+J7uuiwMlQ4HbNx2BnSpphOtO2MwkoI28vdI="
+      "dotnet.native.8.0.0.45ykigla5r.js": "sha256-LjLDIz9+J7uuiwMlQ4HbNx2BnSpphOtO2MwkoI28vdI="
     },
     "jsModuleRuntime": {
-      "dotnet.runtime.8.0.0.061gthb13y.js": "sha256-WdSX3HQvnBYF0KJLZoOyHvTzMHetaob6PV0Kn2K+QXw="
+      "dotnet.runtime.8.0.0.4nmj5hsanr.js": "sha256-WdSX3HQvnBYF0KJLZoOyHvTzMHetaob6PV0Kn2K+QXw="
     },
     "wasmNative": {
       "dotnet.native.wasm": "sha256-Vr6ZXKoP77zgabrMIxQ1GbOkrxfx5XGqHO0odLhUIMY="
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "FactorioCalculator.wasm": "sha256-RAFlzDznoMhD1Ax8hFmjU18V6jQ0ORA6zcuNBLTjT1o=",
+      "FactorioCalculator.wasm": "sha256-mg0wejXl5TZLwx1UtSinMa/8MkrZEGqmZr/g83aFVC0=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-lk4jLLjtmWeXOFKva7pNKeDwie8nLPCv64v4YXjBOwA=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-RNAqR0ff+baVaIhI+uEcLo9eT+pxGnBEvkCzqD+3roM=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-SF4AwjzzQI81/MSoTVnFD4gFZpg6LjqTKIEwEfND+74=",

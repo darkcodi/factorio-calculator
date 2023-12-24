@@ -1,19 +1,19 @@
 /* /Layout/MainLayout.razor.rz.scp.css */
-.page[b-1edtui1zt6] {
+.page[b-ojns8gnxbc] {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-main[b-1edtui1zt6] {
+main[b-ojns8gnxbc] {
     flex: 1;
 }
 
-.sidebar[b-1edtui1zt6] {
+.sidebar[b-ojns8gnxbc] {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
-.top-row[b-1edtui1zt6] {
+.top-row[b-ojns8gnxbc] {
     background-color: #f7f7f7;
     border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
@@ -22,56 +22,56 @@ main[b-1edtui1zt6] {
     align-items: center;
 }
 
-    .top-row[b-1edtui1zt6]  a, .top-row[b-1edtui1zt6]  .btn-link {
+    .top-row[b-ojns8gnxbc]  a, .top-row[b-ojns8gnxbc]  .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
         text-decoration: none;
     }
 
-    .top-row[b-1edtui1zt6]  a:hover, .top-row[b-1edtui1zt6]  .btn-link:hover {
+    .top-row[b-ojns8gnxbc]  a:hover, .top-row[b-ojns8gnxbc]  .btn-link:hover {
         text-decoration: underline;
     }
 
-    .top-row[b-1edtui1zt6]  a:first-child {
+    .top-row[b-ojns8gnxbc]  a:first-child {
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
 @media (max-width: 640.98px) {
-    .top-row[b-1edtui1zt6] {
+    .top-row[b-ojns8gnxbc] {
         justify-content: space-between;
     }
 
-    .top-row[b-1edtui1zt6]  a, .top-row[b-1edtui1zt6]  .btn-link {
+    .top-row[b-ojns8gnxbc]  a, .top-row[b-ojns8gnxbc]  .btn-link {
         margin-left: 0;
     }
 }
 
 @media (min-width: 641px) {
-    .page[b-1edtui1zt6] {
+    .page[b-ojns8gnxbc] {
         flex-direction: row;
     }
 
-    .sidebar[b-1edtui1zt6] {
+    .sidebar[b-ojns8gnxbc] {
         width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
     }
 
-    .top-row[b-1edtui1zt6] {
+    .top-row[b-ojns8gnxbc] {
         position: sticky;
         top: 0;
         z-index: 1;
     }
 
-    .top-row.auth[b-1edtui1zt6]  a:first-child {
+    .top-row.auth[b-ojns8gnxbc]  a:first-child {
         flex: 1;
         text-align: right;
         width: 0;
     }
 
-    .top-row[b-1edtui1zt6], article[b-1edtui1zt6] {
+    .top-row[b-ojns8gnxbc], article[b-ojns8gnxbc] {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
