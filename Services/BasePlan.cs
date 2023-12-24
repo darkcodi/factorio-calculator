@@ -50,15 +50,15 @@ public class BasePlan
             AddResource(output.Resource, output.Amount * count);
         }
 
-        // Remove all resources that are not used by any factory
-        for (var i = _resources.Count - 1; i >= 0; i--)
-        {
-            if (_resourceAmounts[i] == 0)
-            {
-                _resources.RemoveAt(i);
-                _resourceAmounts.RemoveAt(i);
-            }
-        }
+        // // Remove all resources that are not used by any factory
+        // for (var i = _resources.Count - 1; i >= 0; i--)
+        // {
+        //     if (_resourceAmounts[i] == 0)
+        //     {
+        //         _resources.RemoveAt(i);
+        //         _resourceAmounts.RemoveAt(i);
+        //     }
+        // }
     }
 
     private void AddResource(string resource, double amount)
