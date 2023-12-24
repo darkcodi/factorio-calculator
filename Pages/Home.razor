@@ -144,10 +144,12 @@
                                 var bgColor = ColorGenerator.GetBackgroundColorForText(resource);
                                 var fgColor = ColorGenerator.GetForegroundColorForColor(bgColor);
                                 <span class="badge" style="background-color: @bgColor; color: @fgColor;">@resource</span>
-                                <button class="btn btn-outline-secondary" type="button" style="margin-left: 10px;" @onclick="() => BasePlan.IncreaseResource(resource)">+</button>
                                 if (amount < 0)
                                 {
-                                    <button class="btn btn-outline-secondary" type="button" style="margin-left: 10px;" @onclick="() => BasePlan.EnsurePositiveResource(resource)">~</button>
+                                    <button class="btn btn-secondary" type="button" style="margin-left: 10px;" @onclick="() => BasePlan.EnsurePositiveResource(resource)">~</button>
+                                } else if (amount == 0)
+                                {
+                                    <button class="btn btn-outline-secondary" type="button" style="margin-left: 10px;" @onclick="() => BasePlan.IncreaseResource(resource)">+</button>
                                 }
                             }
                         </td>
@@ -160,6 +162,14 @@
                 }
                 </tbody>
             </table>
+            @if (BasePlan.HasAnyNegativeResource)
+            {
+                <button class="btn btn-secondary" type="button" @onclick="() => BasePlan.EnsureAllResourceNonNegative()">ALL ~</button>
+            }
+            @if (BasePlan.HasAnyZeroResource)
+            {
+                <button class="btn btn-outline-secondary" type="button" @onclick="() => BasePlan.IncreaseAllZeroResources()">ALL +</button>
+            }
         }
         else
         {

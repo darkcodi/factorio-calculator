@@ -11,6 +11,8 @@ public class BasePlan
 
     public IReadOnlyCollection<(Factory Factory, int Count)> Factories => _factories.Select((f, i) => (f, _factoryCounts[i])).ToList();
     public IReadOnlyCollection<(string Resource, double Amount)> Resources => _resources.Select((r, i) => (r, _resourceAmounts[i])).OrderBy(x => x.r).ToList();
+    public bool HasAnyNegativeResource => _resourceAmounts.Any(x => x < 0);
+    public bool HasAnyZeroResource => _resourceAmounts.Any(x => x == 0);
 
     public void AddFactory(Factory factory, ushort count = 0)
     {
@@ -45,6 +47,17 @@ public class BasePlan
         }
     }
 
+    public void EnsureAllResourceNonNegative()
+    {
+        while (true)
+        {
+            var negativeResourceIndex = _resourceAmounts.FindIndex(x => x < 0);
+            if (negativeResourceIndex == -1) break;
+            var resource = _resources[negativeResourceIndex];
+            EnsurePositiveResource(resource);
+        }
+    }
+
     public void IncreaseResource(string resource)
     {
         var resourceIndex = _resources.FindIndex(x => x == resource);
@@ -53,6 +66,17 @@ public class BasePlan
         if (factoryIndex == -1) return;
         var factory = _factories[factoryIndex];
         AddFactories(factory.Name, 1);
+    }
+
+    public void IncreaseAllZeroResources()
+    {
+        while (true)
+        {
+            var zeroResourceIndex = _resourceAmounts.FindIndex(x => x == 0);
+            if (zeroResourceIndex == -1) break;
+            var resource = _resources[zeroResourceIndex];
+            IncreaseResource(resource);
+        }
     }
 
     public void IncreaseFactoryCount(string factoryName) => AddFactories(factoryName, 1);
