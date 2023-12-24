@@ -12,7 +12,7 @@ public class BasePlan
     public IReadOnlyCollection<(Factory Factory, int Count)> Factories => _factories.Select((f, i) => (f, _factoryCounts[i])).ToList();
     public IReadOnlyCollection<(string Resource, double Amount)> Resources => _resources.Select((r, i) => (r, _resourceAmounts[i])).OrderBy(x => x.r).ToList();
 
-    public void AddFactory(Factory factory, ushort count = 1)
+    public void AddFactory(Factory factory, ushort count = 0)
     {
         if (_factories.All(f => f.Name != factory.Name))
         {
