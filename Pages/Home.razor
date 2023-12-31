@@ -87,7 +87,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var (factory, count) in BasePlan.Factories)
+                @foreach (var (factory, count) in BasePlan.Factories.OrderByDescending(x => x.Count > 0))
                 {
                     <tr>
                         <td>@factory.Name</td>
@@ -139,7 +139,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var (resource, amount, totalAmount) in BasePlan.Resources)
+                @foreach (var (resource, amount, totalAmount) in BasePlan.Resources
+                              .OrderByDescending(x => x.Amount != 0)
+                              .ThenByDescending(x => x.AllAmount != 0))
                 {
                     <tr>
                         <td>
